@@ -1,1 +1,24 @@
-<p>login-page works!</p>
+<div class="login-container">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <h2>Login</h2>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" formControlName="email" />
+        <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+            <small>Email invalid</small>
+        </div>
+
+        <label for="password">Parolă:</label>
+        <input type="password" id="password" formControlName="password" />
+        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+            <small>Parola trebuie să conțină minim 6 caractere, inclusiv majusculă, minusculă, cifră și simbol.</small>
+        </div>
+
+        <label>
+            <input type="checkbox" formControlName="rememberMe" />
+            Ține-mă minte
+        </label>
+
+        <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    </form>
+</div>
