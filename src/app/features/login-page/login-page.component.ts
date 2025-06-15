@@ -41,8 +41,11 @@ export class LoginPageComponent implements OnInit {
         localStorage.setItem('userEmail', email);
       }
 
-      this.router.navigate(['/movies']); //redirectioneaza dupa login
+      this.router.navigate(['/movies-table']); //redirectioneaza dupa login
     }
+  }
+  goToRegister() {
+    this.router.navigate(['/register']);
   }
 
 }

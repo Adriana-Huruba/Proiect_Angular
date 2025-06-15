@@ -1,0 +1,28 @@
+.register-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.register-container input {
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+}
+
+.register-container button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.register-container small {
+    color: red;
+    font-size: 0.8rem;
+}
