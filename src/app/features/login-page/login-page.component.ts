@@ -13,10 +13,7 @@ import { CommonModule } from '@angular/common';
 export class LoginPageComponent implements OnInit {
   loginForm!: FormGroup;
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router
-  ) { }
+  constructor(private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -34,18 +31,17 @@ export class LoginPageComponent implements OnInit {
     if (this.loginForm.valid) {
       const { email, password, rememberMe } = this.loginForm.value;
 
-      //simulare login pe care o inlocuim cu service mai tarziu
       console.log('Logging in with:', email, password, rememberMe);
 
       if (rememberMe) {
         localStorage.setItem('userEmail', email);
       }
 
-      this.router.navigate(['/movies-table']); //redirectioneaza dupa login
+      this.router.navigate(['/movies-table']);
     }
   }
+
   goToRegister() {
     this.router.navigate(['/register']);
   }
-
 }

@@ -6,18 +6,19 @@
         <label for="email">Email:</label>
         <input type="email" id="email" formControlName="email" />
         <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
-            <small>Email invalid</small>
+            <small>Invalid email!</small>
         </div>
 
-        <label for="password">Parolă:</label>
+        <label for="password">Password:</label>
         <input type="password" id="password" formControlName="password" />
         <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
-            <small>Parola trebuie să conțină minim 6 caractere, inclusiv majusculă, minusculă, cifră și simbol.</small>
+            <small>The password must contain at least 6 characters, including an uppercase letter, a lowercase letter, a
+                digit, and a symbol!</small>
         </div>
 
         <label>
             <input type="checkbox" formControlName="rememberMe" />
-            Ține-mă minte
+            Remember me!
         </label>
 
         <button type="submit" [disabled]="loginForm.invalid">Login</button>
