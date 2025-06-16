@@ -4,10 +4,10 @@
 
         <h2>Register</h2>
 
-        <label for="firstName">Nume:</label>
+        <label for="firstName">First Name:</label>
         <input type="text" id="firstName" formControlName="firstName" />
 
-        <label for="lastName">Prenume:</label>
+        <label for="lastName">Last Name:</label>
         <input type="text" id="lastName" formControlName="lastName" />
 
         <label for="email">Email:</label>
@@ -16,20 +16,20 @@
             <small>Email invalid</small>
         </div>
 
-        <label for="password">Parolă:</label>
+        <label for="password">Password:</label>
         <!-- <input type="password" id="password" formControlName="password" /> -->
         <input [type]="isPasswordVisible? 'text':'password' " id="password" formControlName="password" />
         <button type="button" (click)="togglePasswordVisibility()">
-            {{ isPasswordVisible ? 'Ascunde' : 'Arată' }}
+            {{ isPasswordVisible ? 'Hide' : 'Show' }}
         </button>
         <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
-            <small>Parola trebuie să conțină minim 6 caractere, inclusiv majusculă, minusculă, cifră și simbol.</small>
+            <small>Password must contain at least 6 characters, including uppercase, lowercase, number, and symbol!</small>
         </div>
 
-        <label for="confirmPassword">Confirmă Parola:</label>
+        <label for="confirmPassword">Confirm Password:</label>
         <input type="password" id="confirmPassword" formControlName="confirmPassword" />
         <div *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched">
-            <small>Parolele nu se potrivesc.</small>
+            <small>Passwords do not match!</small>
         </div>
 
         

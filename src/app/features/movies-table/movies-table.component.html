@@ -1,4 +1,40 @@
-
-<input type="text" placeholder="Search a movie..." />
+<input id="text" type="text" placeholder="Search a movie..." />
 <button>Search</button>
 <p>List of Movies:</p>
+<button  nz-button nzType="primary" (click)="addMovie()" class="btn-add">Add Movie</button>
+
+<nz-table #basicTable [nzData]="movies()">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Director</th>
+      <th>Year</th>
+      <th>Genre</th>
+      <th>Rating</th>
+      <th>Duration</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(data of movies(); track data) {
+      <tr>
+        <td>{{data.title}}</td>
+        <td>{{data.director}}</td>
+        <td>{{data.year}}</td>
+        <td>{{data.genre}}</td>
+        <td>{{data.rating }}</td>
+        <td>{{data.duration}}</td>
+        <td>{{data.description}}</td>
+        <td>
+          <button nz-button nzType="link" (click)="editMovie(data)">Edit</button>
+          <!-- <nz-divider nzType="vertical"></nz-divider> -->
+        </td>
+      </tr>
+    }
+  </tbody>
+</nz-table>
+
+<nz-pagination [nzPageIndex]="pageIndex" [nzTotal]="total" [nzPageSize]="pageSize" [nzShowQuickJumper]="true"
+    (nzPageIndexChange)="onPageChange($event)">
+</nz-pagination>
