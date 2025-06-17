@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-
+import { Movie } from "./interfaces/movie.interface";
 @Injectable({
     providedIn: 'root'
 })
@@ -15,7 +15,7 @@ import { Injectable } from "@angular/core";
 
 export class MovieService {
     constructor() { }
-    private listOfMovies(){
+    private listOfMovies() {
         return [
             {
                 id: 1,
@@ -40,8 +40,17 @@ export class MovieService {
         ];
     }
 
-    
-    getMovies() {
-        return this.listOfMovies();
+    private movies: Movie[] = this.listOfMovies();
+    getMovies(): Movie[] {
+        return this.movies;
+    }
+    updateMovie(updatedMovie: Movie) {
+        const index = this.movies.findIndex(movie => movie.id === updatedMovie.id);
+        if (index !== -1) {
+            this.movies[index] = updatedMovie;
+        }
+    }
+    addMovie(newMovie: Movie) {
+        this.movies.push(newMovie);
     }
 }

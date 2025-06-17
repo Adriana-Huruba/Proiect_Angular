@@ -1,0 +1,14 @@
+.btn-add {
+    margin-bottom: 10px;
+    align-items: center;
+    display: flex;
+
+}
+
+::ng-deep .ant-table-cell {
+    padding: 12px;
+}
+
+::ng-deep .cdk-overlay-backdrop {
+    background-color: rgba(0, 0, 0, 0.45) !important;
+}
