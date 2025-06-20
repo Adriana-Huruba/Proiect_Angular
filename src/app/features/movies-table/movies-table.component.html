@@ -2,16 +2,22 @@
 <button nz-button nzType="primary" (click)="addMovie()" class="btn-add">Add Movie</button>
 
 
-<nz-table #basicTable [nzData]="displayData" [nzPageSize]="pageSize" [(nzPageIndex)]="pageIndex" [nzTotal]="total"
+<nz-table #basicTable [nzData]="displayData" [nzPageSize]="pageSize" [nzPageIndex]="pageIndex" [nzTotal]="total"
   nzPagination="true" (nzPageIndexChange)="onPageChange($event)" [nzBordered]="true">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Director</th>
-      <th>Year</th>
-      <th>Genre</th>
-      <th>Rating</th>
-      <th>Duration</th>
+      <th nzShowSort [nzSortOrder]="sortKey==='title'? sortOrder: null" (nzSortChange)="onSortChange('title', $event)">
+        Title</th>
+      <th nzShowSort [nzSortOrder]="sortKey==='director'? sortOrder: null"
+        (nzSortChange)="onSortChange('director', $event)">Director</th>
+      <th nzShowSort [nzSortOrder]="sortKey==='year'? sortOrder: null" (nzSortChange)="onSortChange('year', $event)">
+        Year</th>
+      <th nzShowSort [nzSortOrder]="sortKey==='genre'? sortOrder: null" (nzSortChange)="onSortChange('genre', $event)">
+        Genre</th>
+      <th nzShowSort [nzSortOrder]="sortKey==='rating'? sortOrder: null"
+        (nzSortChange)="onSortChange('rating', $event)">Rating</th>
+      <th nzShowSort [nzSortOrder]="sortKey==='duration'? sortOrder: null"
+        (nzSortChange)="onSortChange('duration', $event)">Duration</th>
       <th>Description</th>
       <th>Actions</th>
     </tr>
@@ -23,12 +29,16 @@
       <td>{{data.director}}</td>
       <td>{{data.year}}</td>
       <td>{{data.genre}}</td>
-      <td>{{data.rating }}</td>
+      <td>
+        <nz-rate [ngModel]="data.rating" [nzDisabled]="true"></nz-rate>
+      </td>
+
       <td>{{data.duration}}</td>
       <td>{{data.description}}</td>
       <td>
         <button nz-button nzType="link" (click)="editMovie(data)">Edit</button>
         <nz-divider nzType="vertical"></nz-divider>
+        <button nz-button nzType="link" nzDanger (click)="deleteMovie(data)">Delete</button>
       </td>
     </tr>
     }
@@ -68,9 +78,9 @@
       </div>
       <div class="form-group">
         <label for="rating">Rating</label>
-        <input id="rating" formControlName="rating" nz-input placeholder="Add rating (0-10)" type="number" />
+        <nz-rate formControlName="rating"></nz-rate>
         <div *ngIf="form.get('rating')!.invalid && form.get('rating')!.touched" class="error-inline">
-          Rating must be between 0 and 10!
+          Rating is required!
         </div>
       </div>
       <div class="form-group">

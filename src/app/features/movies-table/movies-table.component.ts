@@ -31,7 +31,7 @@ import { MovieSearchComponent } from "../movie-search/movie-search.component";
     NzDividerModule,
     ReactiveFormsModule,
     MovieSearchComponent
-],
+  ],
   providers: [NzModalService],
   templateUrl: './movies-table.component.html',
   styleUrl: './movies-table.component.scss'
@@ -45,6 +45,7 @@ export class MoviesTableComponent implements OnInit {
 
   private movieService = inject(MovieService);
   movies = signal<Movie[]>([]);
+  originalMovies = signal<Movie[]>([]);
 
   form!: FormGroup;
   displayData: Movie[] = [];
@@ -54,7 +55,9 @@ export class MoviesTableComponent implements OnInit {
   total = 0;
   pageSize = 8;
   isEditMode = false;
-  searchMovie='';
+  searchMovie = '';
+  sortKey: string = '';
+  sortOrder: string | null = null;
 
   ngOnInit() {
     console.log("initialization");
@@ -77,9 +80,8 @@ export class MoviesTableComponent implements OnInit {
 
   private loadMovies() {
     const movies = this.movieService.getMovies();
-    this.movies.set(movies);//
-    this.total = movies.length;
-    this.updateDisplayData();
+    this.originalMovies.set(movies);
+    this.applyFiltersAndSorting();
   }
 
   handleOk() {
@@ -121,12 +123,12 @@ export class MoviesTableComponent implements OnInit {
 
   onPageChange(page: number): void {
     this.pageIndex = page;
-    this.updateDisplayData();
+    this.applyFiltersAndSorting();
   }
 
   updateDisplayData() {
     //const movies = this.movieService.getMovies();
-    const movies=this.movies();
+    const movies = this.movies();
     this.displayData = movies.slice((this.pageIndex - 1) * this.pageSize, this.pageIndex * this.pageSize);
     this.total = movies.length;
   }
@@ -148,20 +150,75 @@ export class MoviesTableComponent implements OnInit {
     this.isVisible = true;
   }
 
-  onSearchChange(searchText: string) {
-    console.log("on search change called with", searchText);
-    this.searchMovie = searchText.trim();
+  deleteMovie(movie: any): void {
+    const confirmDelete = confirm(`Are you sure you want to delete the movie"${movie.title}"?`);
+    if (confirmDelete) {
+      this.displayData = this.displayData.filter(m => m !== movie);
 
-    if (this.searchMovie) {
-      const filteredMovies = this.movieService.searchByTitle(this.searchMovie);
-      console.log("Filtered movies:", filteredMovies);
-      this.displayData=filteredMovies;
-
-    } else {
-      const allMovies = this.movieService.getMovies();
-      this.movies.set(allMovies);
-      this.updateDisplayData();
     }
   }
-  
+
+  onSortChange(sortKey: keyof Movie, sortOrder: 'ascend' | 'descend' | null | Event): void {
+    if (sortOrder instanceof Event) {
+      return;
+    }
+    this.sortKey = sortKey;
+    this.sortOrder = sortOrder;
+    this.pageIndex = 1;
+    this.applyFiltersAndSorting();
+  }
+
+  onSearchChange(searchText: string) {
+    this.searchMovie = searchText.trim();
+    this.pageIndex = 1;
+    this.applyFiltersAndSorting();
+  }
+
+  applyFiltersAndSorting() {
+    let movies = [...this.originalMovies()];
+
+    // Filtrare după titlu
+    if (this.searchMovie) {
+      movies = movies.filter(movie =>
+        movie.title.toLowerCase().includes(this.searchMovie.toLowerCase())
+      );
+    }
+
+    // Sortare
+    if (this.sortKey && this.sortOrder) {
+      movies.sort((a, b) => {
+        const valueA = a[this.sortKey as keyof Movie];
+        const valueB = b[this.sortKey as keyof Movie];
+
+        if (typeof valueA === 'number' && typeof valueB === 'number') {
+          return this.sortOrder === 'ascend' ? valueA - valueB : valueB - valueA;
+        }
+
+        return this.sortOrder === 'ascend'
+          ? String(valueA).localeCompare(String(valueB))
+          : String(valueB).localeCompare(String(valueA));
+      });
+    }
+
+    // Setăm lista curentă în `movies`, și actualizăm `displayData`
+    this.movies.set(movies);
+    this.updateDisplayData();
+  }
+
+  //  onSearchChange(searchText: string) {
+  //  console.log("on search change called with", searchText);
+  // this.searchMovie = searchText.trim();
+
+  //if (this.searchMovie) {
+  // const filteredMovies = this.movieService.searchByTitle(this.searchMovie);
+  //console.log("Filtered movies:", filteredMovies);
+  //this.displayData = filteredMovies;
+
+  //} else {
+  //const allMovies = this.movieService.getMovies();
+  //this.movies.set(allMovies);
+  //this.updateDisplayData();
+  //}
+  //}
+
 }

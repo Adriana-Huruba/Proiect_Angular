@@ -1,3 +1,27 @@
+:host {
+    display: block;
+    min-height: 100vh;
+    background-image: url('https://gallery.yopriceville.com/var/albums/Backgrounds/Cinema_Background.jpg?m=1629777249');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.6);
+        z-index: 0;
+    }
+
+    >* {
+        position: relative;
+        z-index: 1;
+    }
+}
+
 .btn-add {
     margin-top: 20px;
     margin-bottom: 10px;
@@ -7,14 +31,26 @@
     border-radius: 6px;
 }
 
-::ng-deep .ant-table-cell {
-    padding: 12px;
-}
 
 ::ng-deep .cdk-overlay-backdrop {
     background-color: rgba(0, 0, 0, 0.45) !important;
 }
 
-nz-table{
-    margin: 20px;
+::ng-deep nz-table {
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    padding: 16px;
+}
+
+::ng-deep nz-table .ant-table-container,
+::ng-deep nz-table .ant-table-content,
+::ng-deep nz-table .ant-table-thead>tr>th,
+::ng-deep nz-table .ant-table-tbody>tr>td,
+::ng-deep nz-table .ant-table-cell {
+    background-color: transparent !important;
+    color: #e0e0e0 !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
 }

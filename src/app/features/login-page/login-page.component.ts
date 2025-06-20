@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import {AuthService} from '../../core/services/auth.service';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -13,12 +13,12 @@ import {AuthService} from '../../core/services/auth.service';
 })
 export class LoginPageComponent implements OnInit {
   loginForm!: FormGroup;
+  showPassword = false;
 
   constructor(
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
     private router: Router,
-    private authService: AuthService) 
-  { }
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -32,6 +32,11 @@ export class LoginPageComponent implements OnInit {
     });
   }
 
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
+  }
+
+
   onSubmit(): void {
     if (this.loginForm.valid) {
       const { email, password, rememberMe } = this.loginForm.value;
@@ -39,8 +44,7 @@ export class LoginPageComponent implements OnInit {
       this.authService.login(email, password)
         .subscribe({
           next: (response) => {
-            if(response)
-            {
+            if (response) {
               console.log('Login successful:', response);
               this.authService.setToken(response.token); // Assuming the response contains a token
               if (rememberMe) {
@@ -48,11 +52,11 @@ export class LoginPageComponent implements OnInit {
               }
               this.router.navigate(['/movies-table']);
             }
-            else{
+            else {
               console.error('Login failed');
               alert('Invalid email or password! Please try again.');
             }
-            
+
           },
           // error: (error) => {
           //   console.error('Login failed:', error);
