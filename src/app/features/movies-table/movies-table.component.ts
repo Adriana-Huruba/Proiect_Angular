@@ -13,6 +13,7 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { valueFunctionProp } from 'ng-zorro-antd/core/util';
 import { Movie } from '../../core/interfaces/movie.interface';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MovieSearchComponent } from "../movie-search/movie-search.component";
 
 @Component({
   selector: 'app-movies-table',
@@ -28,17 +29,20 @@ import { ReactiveFormsModule } from '@angular/forms';
     NzPaginationModule,
     NzModalModule,
     NzDividerModule,
-    ReactiveFormsModule
-  ],
+    ReactiveFormsModule,
+    MovieSearchComponent
+],
   providers: [NzModalService],
   templateUrl: './movies-table.component.html',
   styleUrl: './movies-table.component.scss'
 })
 
 export class MoviesTableComponent implements OnInit {
+
   openWindow() {
     throw new Error('Method not implemented.')
   }
+
   private movieService = inject(MovieService);
   movies = signal<Movie[]>([]);
 
@@ -50,6 +54,7 @@ export class MoviesTableComponent implements OnInit {
   total = 0;
   pageSize = 8;
   isEditMode = false;
+  searchMovie='';
 
   ngOnInit() {
     console.log("initialization");
@@ -72,6 +77,7 @@ export class MoviesTableComponent implements OnInit {
 
   private loadMovies() {
     const movies = this.movieService.getMovies();
+    this.movies.set(movies);//
     this.total = movies.length;
     this.updateDisplayData();
   }
@@ -119,7 +125,8 @@ export class MoviesTableComponent implements OnInit {
   }
 
   updateDisplayData() {
-    const movies = this.movieService.getMovies();
+    //const movies = this.movieService.getMovies();
+    const movies=this.movies();
     this.displayData = movies.slice((this.pageIndex - 1) * this.pageSize, this.pageIndex * this.pageSize);
     this.total = movies.length;
   }
@@ -141,5 +148,20 @@ export class MoviesTableComponent implements OnInit {
     this.isVisible = true;
   }
 
+  onSearchChange(searchText: string) {
+    console.log("on search change called with", searchText);
+    this.searchMovie = searchText.trim();
 
+    if (this.searchMovie) {
+      const filteredMovies = this.movieService.searchByTitle(this.searchMovie);
+      console.log("Filtered movies:", filteredMovies);
+      this.displayData=filteredMovies;
+
+    } else {
+      const allMovies = this.movieService.getMovies();
+      this.movies.set(allMovies);
+      this.updateDisplayData();
+    }
+  }
+  
 }

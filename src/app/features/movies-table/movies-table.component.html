@@ -1,7 +1,6 @@
-<input id="text" type="text" placeholder="Search a movie..." />
-<button>Search</button>
-<p>List of Movies:</p>
+<app-movie-search [searchTerm]="searchMovie" (search)="onSearchChange($event)"></app-movie-search>
 <button nz-button nzType="primary" (click)="addMovie()" class="btn-add">Add Movie</button>
+
 
 <nz-table #basicTable [nzData]="displayData" [nzPageSize]="pageSize" [(nzPageIndex)]="pageIndex" [nzTotal]="total"
   nzPagination="true" (nzPageIndexChange)="onPageChange($event)" [nzBordered]="true">
@@ -18,7 +17,7 @@
     </tr>
   </thead>
   <tbody>
-    @for(data of displayData; track data) {
+    @for(data of displayData; track data.id) {
     <tr>
       <td>{{data.title}}</td>
       <td>{{data.director}}</td>
@@ -35,10 +34,6 @@
     }
   </tbody>
 </nz-table>
-
-<!--<nz-pagination [nzPageIndex]="pageIndex" [nzTotal]="total" [nzPageSize]="pageSize" [nzShowQuickJumper]="true"
-  (nzPageIndexChange)="onPageChange($event)">
-</nz-pagination>-->
 
 <nz-modal [(nzVisible)]="isVisible" nzTitle="Add Movie" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
   <ng-container *nzModalContent>

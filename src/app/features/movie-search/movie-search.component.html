@@ -1,0 +1,9 @@
+<header class="header">
+    <h1>Cinema Universe</h1>
+    <h2>Welcome to your Cinema!</h2>
+    <div class="search-container">
+        <input nz-input id="text" type="text" placeholder="Search a movie..." [(ngModel)]="searchTerm" (keydown.enter)="searchMovies()" />
+        <button (click)="searchMovies()" class="btn-search">Search</button>
+    </div>
+</header>
+

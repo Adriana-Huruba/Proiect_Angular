@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { first } from 'rxjs';
+import { UserService } from '../../core/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-page',
@@ -13,13 +15,12 @@ import { first } from 'rxjs';
 
 export class RegisterPageComponent {
   isPasswordVisible: boolean = true;
-  togglePasswordVisibility() {
-    this.isPasswordVisible = !this.isPasswordVisible;
-  }
   registerForm!: FormGroup;
-  constructor() {
+
+  constructor(private userService: UserService, private router: Router) { 
     this.registerForm = new FormGroup({});
   }
+
   ngOnInit() {
     this.initializeForm();
   }
@@ -33,9 +34,58 @@ export class RegisterPageComponent {
       confirmPassword: new FormControl('', [Validators.required])
     });
   }
+
+  togglePasswordVisibility() {
+    this.isPasswordVisible = !this.isPasswordVisible;
+  }
+ 
   onSubmit() {
     if (this.registerForm.valid) {
       console.log(this.registerForm.value);
+
+      const{password, confirmPassword} = this.registerForm.value;
+      if(password !== confirmPassword) {
+        alert('Passwords do not match! Please try again.');
+        return;
+      }
+
+      const { firstName, lastName, email } = this.registerForm.value;
+      const newUser={firstName, lastName, email, password};
+
+      this.userService.getUser(email, password).subscribe(users=> {
+        if(users.length > 0) {
+          console.log('User already exists:', users[0]);
+          alert('User already exists! Please log in.');
+        }
+        else
+        {
+          this.userService.addUser(newUser).subscribe({
+            next: (user) => {
+              //console.log('User registered successfully:', user);
+              //console.log('Assigned ID:', user.id); 
+              alert('Registration successful! Please log in.');
+              this.router.navigate(['/login']); 
+            },
+            error: (error) => {
+              console.error('Error registering user:', error);
+              alert('Registration failed! Please try again.');
+            }
+          });
+        }
+      })
+
+      // this.userService.getUser(email, password)
+      //   .pipe(first())
+      //   .subscribe(user => {
+      //     if (user) {
+      //       console.log('User already exists:', user);
+      //     } else {
+      //       this.userService.addUser(user)
+      //         .subscribe(newUser => {
+      //           console.log('User registered successfully:', newUser);
+      //         });
+      //     }
+      //   });
     }
   }
 

@@ -1,8 +1,10 @@
 .btn-add {
+    margin-top: 20px;
     margin-bottom: 10px;
+    margin-left: 20px;
     align-items: center;
     display: flex;
-
+    border-radius: 6px;
 }
 
 ::ng-deep .ant-table-cell {
@@ -11,4 +13,8 @@
 
 ::ng-deep .cdk-overlay-backdrop {
     background-color: rgba(0, 0, 0, 0.45) !important;
+}
+
+nz-table{
+    margin: 20px;
 }
