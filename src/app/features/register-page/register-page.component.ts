@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-register-page',
@@ -15,10 +16,27 @@ export class RegisterPageComponent {
   togglePasswordVisibility() {
     this.isPasswordVisible = !this.isPasswordVisible;
   }
-  registerForm: any;
-  
+  registerForm!: FormGroup;
+  constructor() {
+    this.registerForm = new FormGroup({});
+  }
+  ngOnInit() {
+    this.initializeForm();
+  }
+
+  initializeForm() {
+    this.registerForm = new FormGroup({
+      firstName: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      lastName: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      confirmPassword: new FormControl('', [Validators.required])
+    });
+  }
   onSubmit() {
-    throw new Error('Method not implemented.');
+    if (this.registerForm.valid) {
+      console.log(this.registerForm.value);
+    }
   }
 
 }

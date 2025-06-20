@@ -1,0 +1,18 @@
+{
+    "users": [
+        {
+        "id": 1,
+        "name": "Ana",
+        "email": "ana@example.com",
+        "password": "ParolaAna1!",
+        "token": "tokenAna"
+        },
+        {
+            "id": 2,
+            "name": "John",
+            "email": "john@example.com",
+            "password": "ParolaJohn1!",
+            "token": "tokenJohn"
+        }
+    ]
+}

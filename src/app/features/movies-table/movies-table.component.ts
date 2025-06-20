@@ -11,8 +11,9 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { MovieService } from '../../core/services/movie.service';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { valueFunctionProp } from 'ng-zorro-antd/core/util';
-import { Movie } from '../../core/services/interfaces/movie.interface';
+import { Movie } from '../../core/interfaces/movie.interface';
 import { ReactiveFormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-movies-table',
   standalone: true,
