@@ -35,10 +35,11 @@
                 digit, and a symbol!</small>
         </div>
 
-        <label>
-            <input type="checkbox" formControlName="rememberMe" />
-            Remember me!
-        </label>
+        <div class="remember-me">
+            <label for="rememberMe">Remember me!</label>
+            <input type="checkbox" formControlName="rememberMe" id="rememberMe" />
+        </div>
+
 
         <button type="submit" [disabled]="loginForm.invalid">Login</button>
     </form>

@@ -3,7 +3,7 @@
 
 
 <nz-table #basicTable [nzData]="displayData" [nzPageSize]="pageSize" [nzPageIndex]="pageIndex" [nzTotal]="total"
-  nzPagination="true" (nzPageIndexChange)="onPageChange($event)" [nzBordered]="true">
+  nzPagination="true" (nzPageIndexChange)="onPageChange($event)" [nzBordered]="true" [nzFrontPagination]="false">
   <thead>
     <tr>
       <th nzShowSort [nzSortOrder]="sortKey==='title'? sortOrder: null" (nzSortChange)="onSortChange('title', $event)">

@@ -37,20 +37,24 @@
 }
 
 ::ng-deep nz-table {
-    background-color: rgba(255, 255, 255, 0.12) !important;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background-color: transparent !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    box-shadow: none;
     padding: 16px;
+    color: #f0f0f0;
 }
 
+::ng-deep nz-table .ant-table-wrapper,
+::ng-deep nz-table .ant-spin-nested-loading,
+::ng-deep nz-table .ant-table,
 ::ng-deep nz-table .ant-table-container,
 ::ng-deep nz-table .ant-table-content,
 ::ng-deep nz-table .ant-table-thead>tr>th,
 ::ng-deep nz-table .ant-table-tbody>tr>td,
 ::ng-deep nz-table .ant-table-cell {
     background-color: transparent !important;
-    color: #e0e0e0 !important;
-    border-color: rgba(255, 255, 255, 0.3) !important;
+    color: #f0f0f0 !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
 }

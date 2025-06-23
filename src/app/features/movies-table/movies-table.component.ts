@@ -162,6 +162,7 @@ export class MoviesTableComponent implements OnInit {
     if (sortOrder instanceof Event) {
       return;
     }
+    console.log('Sort key:', sortKey, 'Order:', sortOrder);
     this.sortKey = sortKey;
     this.sortOrder = sortOrder;
     this.pageIndex = 1;
@@ -177,18 +178,16 @@ export class MoviesTableComponent implements OnInit {
   applyFiltersAndSorting() {
     let movies = [...this.originalMovies()];
 
-    // Filtrare după titlu
     if (this.searchMovie) {
       movies = movies.filter(movie =>
         movie.title.toLowerCase().includes(this.searchMovie.toLowerCase())
       );
     }
 
-    // Sortare
     if (this.sortKey && this.sortOrder) {
       movies.sort((a, b) => {
-        const valueA = a[this.sortKey as keyof Movie];
-        const valueB = b[this.sortKey as keyof Movie];
+        const valueA = a[this.sortKey as keyof Movie] ?? '';
+        const valueB = b[this.sortKey as keyof Movie] ?? '';
 
         if (typeof valueA === 'number' && typeof valueB === 'number') {
           return this.sortOrder === 'ascend' ? valueA - valueB : valueB - valueA;
@@ -200,7 +199,6 @@ export class MoviesTableComponent implements OnInit {
       });
     }
 
-    // Setăm lista curentă în `movies`, și actualizăm `displayData`
     this.movies.set(movies);
     this.updateDisplayData();
   }

@@ -11,6 +11,7 @@
         width: 100%;
         margin-bottom: 1rem;
         padding: 0.5rem;
+        box-sizing: border-box;
     }
 
     button {
@@ -30,11 +31,13 @@
     .password-wrapper {
         position: relative;
         overflow: visible !important;
+        margin-bottom: 1rem;
 
         input {
             width: 100%;
-            padding-right: 50px;
-            box-sizing: border-box;
+            padding-right: 2.5rem;
+
+            height: 40px;
         }
 
         .toggle-password {
@@ -53,15 +56,15 @@
             font-weight: bold;
             justify-content: center;
             align-items: center;
-            padding: 0.3rem 0.5rem;
-            user-select: none;
-            z-index: 10;
+
+
+
         }
 
         .toggle-password svg {
             width: 20px;
             height: 20px;
-            pointer-events: none;
+
         }
     }
 
@@ -69,16 +72,17 @@
         display: flex;
         align-items: flex-start;
         gap: 0.5rem;
+        margin-bottom: 1rem;
         cursor: pointer;
 
         input[type="checkbox"] {
-            margin: 10px 0 0 0;
+            margin: 0;
         }
 
-        &::after {
-            content: '';
-            display: inline-block;
-            height: 1.2em;
+        label {
+            margin: 0;
+            font-size: 0.95rem;
+            ;
         }
     }
 }
