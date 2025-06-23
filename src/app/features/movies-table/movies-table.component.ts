@@ -57,7 +57,7 @@ export class MoviesTableComponent implements OnInit {
   isEditMode = false;
   searchMovie = '';
   sortKey: string = '';
-  sortOrder: string | null = null;
+  sortOrder: 'ascend' | 'descend' | null = null;
 
   ngOnInit() {
     console.log("initialization");
@@ -102,7 +102,7 @@ export class MoviesTableComponent implements OnInit {
     else {
       this.movieService.addMovie(movieData);
     }
-    //this.updateDisplayData();
+
     this.loadMovies();
     this.isVisible = false;
     this.form.reset();
@@ -127,7 +127,7 @@ export class MoviesTableComponent implements OnInit {
   }
 
   updateDisplayData() {
-    //const movies = this.movieService.getMovies();
+
     const movies = this.movies();
     this.displayData = movies.slice((this.pageIndex - 1) * this.pageSize, this.pageIndex * this.pageSize);
     this.total = movies.length;
@@ -158,13 +158,11 @@ export class MoviesTableComponent implements OnInit {
     }
   }
 
-  onSortChange(sortKey: keyof Movie, sortOrder: 'ascend' | 'descend' | null | Event): void {
-    if (sortOrder instanceof Event) {
-      return;
-    }
+  onSortOrderChange(sortKey: keyof Movie, sortOrder: string | null): void {
+
     console.log('Sort key:', sortKey, 'Order:', sortOrder);
     this.sortKey = sortKey;
-    this.sortOrder = sortOrder;
+    this.sortOrder = sortOrder as 'ascend' | 'descend' | null;
     this.pageIndex = 1;
     this.applyFiltersAndSorting();
   }
@@ -202,21 +200,5 @@ export class MoviesTableComponent implements OnInit {
     this.movies.set(movies);
     this.updateDisplayData();
   }
-
-  //  onSearchChange(searchText: string) {
-  //  console.log("on search change called with", searchText);
-  // this.searchMovie = searchText.trim();
-
-  //if (this.searchMovie) {
-  // const filteredMovies = this.movieService.searchByTitle(this.searchMovie);
-  //console.log("Filtered movies:", filteredMovies);
-  //this.displayData = filteredMovies;
-
-  //} else {
-  //const allMovies = this.movieService.getMovies();
-  //this.movies.set(allMovies);
-  //this.updateDisplayData();
-  //}
-  //}
 
 }

@@ -2,9 +2,20 @@
     max-width: 400px;
     margin: 50px auto;
     padding: 2rem;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+
+
+    h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: #fff;
+    }
 
     input {
         display: block;
@@ -35,14 +46,15 @@
 
         input {
             width: 100%;
-            padding-right: 2.5rem;
-
+            padding-right: 3rem;
+            border-radius: 6px;
+            border: none;
             height: 40px;
         }
 
         .toggle-password {
             position: absolute;
-            right: 10px;
+            right: 8px;
             top: 50%;
             transform: translateY(-50%);
             background: transparent;
@@ -56,7 +68,7 @@
             font-weight: bold;
             justify-content: center;
             align-items: center;
-
+            z-index: 1000;
 
 
         }
@@ -64,16 +76,17 @@
         .toggle-password svg {
             width: 20px;
             height: 20px;
-
+            stroke: #007bff
         }
     }
 
     .remember-me {
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         gap: 0.5rem;
         margin-bottom: 1rem;
         cursor: pointer;
+        flex-wrap: nowrap;
 
         input[type="checkbox"] {
             margin: 0;
@@ -82,6 +95,7 @@
         label {
             margin: 0;
             font-size: 0.95rem;
+            white-space: nowrap;
             ;
         }
     }
@@ -93,4 +107,13 @@
     margin: 20px;
     color: white;
     background-color: #007bff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    width: fit-content;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: #0056b3;
+    }
 }

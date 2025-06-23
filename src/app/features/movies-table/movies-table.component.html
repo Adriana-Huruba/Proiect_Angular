@@ -6,18 +6,21 @@
   nzPagination="true" (nzPageIndexChange)="onPageChange($event)" [nzBordered]="true" [nzFrontPagination]="false">
   <thead>
     <tr>
-      <th nzShowSort [nzSortOrder]="sortKey==='title'? sortOrder: null" (nzSortChange)="onSortChange('title', $event)">
+      <th nzShowSort [nzSortOrder]="sortKey==='title'? sortOrder: null"
+        (nzSortOrderChange)="onSortOrderChange('title', $event)">
         Title</th>
       <th nzShowSort [nzSortOrder]="sortKey==='director'? sortOrder: null"
-        (nzSortChange)="onSortChange('director', $event)">Director</th>
-      <th nzShowSort [nzSortOrder]="sortKey==='year'? sortOrder: null" (nzSortChange)="onSortChange('year', $event)">
+        (nzSortOrderChange)="onSortOrderChange('director', $event)">Director</th>
+      <th nzShowSort [nzSortOrder]="sortKey==='year'? sortOrder: null"
+        (nzSortOrderChange)="onSortOrderChange('year', $event)">
         Year</th>
-      <th nzShowSort [nzSortOrder]="sortKey==='genre'? sortOrder: null" (nzSortChange)="onSortChange('genre', $event)">
+      <th nzShowSort [nzSortOrder]="sortKey==='genre'? sortOrder: null"
+        (nzSortOrderChange)="onSortOrderChange('genre', $event)">
         Genre</th>
       <th nzShowSort [nzSortOrder]="sortKey==='rating'? sortOrder: null"
-        (nzSortChange)="onSortChange('rating', $event)">Rating</th>
+        (nzSortOrderChange)="onSortOrderChange('rating', $event)">Rating</th>
       <th nzShowSort [nzSortOrder]="sortKey==='duration'? sortOrder: null"
-        (nzSortChange)="onSortChange('duration', $event)">Duration</th>
+        (nzSortOrderChange)="onSortOrderChange('duration', $event)">Duration</th>
       <th>Description</th>
       <th>Actions</th>
     </tr>
