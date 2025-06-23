@@ -11,6 +11,7 @@ import { AuthService } from '../../core/services/auth.service';
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss'
 })
+
 export class LoginPageComponent implements OnInit {
   loginForm!: FormGroup;
   showPassword = false;
@@ -46,7 +47,7 @@ export class LoginPageComponent implements OnInit {
           next: (response) => {
             if (response) {
               console.log('Login successful:', response);
-              this.authService.setToken(response.token); // Assuming the response contains a token
+              this.authService.setToken(response.token); 
               if (rememberMe) {
                 localStorage.setItem('userEmail', email);
               }
@@ -58,19 +59,7 @@ export class LoginPageComponent implements OnInit {
             }
 
           },
-          // error: (error) => {
-          //   console.error('Login failed:', error);
-          //   // Handle login error (e.g., show a notification)
-          // }
         });
-
-      // console.log('Logging in with:', email, password, rememberMe);
-
-      // if (rememberMe) {
-      //   localStorage.setItem('userEmail', email);
-      // }
-
-      // this.router.navigate(['/movies-table']);
     }
   }
 

@@ -16,7 +16,7 @@ export class MovieService {
                 duration: 148,
                 year: 2010,
                 genre: 'Sci-Fi',
-                rating: 8.8,
+                rating: 4.5,
                 description: 'A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a CEO.'
             },
             {
@@ -26,7 +26,7 @@ export class MovieService {
                 duration: 152,
                 year: 2008,
                 genre: 'Action',
-                rating: 9.0,
+                rating: 4,
                 description: 'When the menace known as the Joker emerges from his mysterious past, he wreaks havoc and chaos on the people of Gotham. The Dark Knight must accept one of the greatest psychological and physical tests of his ability to fight injustice.'
             },
             {
@@ -36,7 +36,7 @@ export class MovieService {
                 duration: 169,
                 year: 2014,
                 genre: 'Adventure',
-                rating: 8.6,
+                rating: 5,
                 description: 'A team of explorers travel through a wormhole in space in an attempt to ensure humanity\'s survival.'
             },
             {
@@ -46,7 +46,7 @@ export class MovieService {
                 duration: 142,
                 year: 1994,
                 genre: 'Drama',
-                rating: 9.3,
+                rating: 3,
                 description: 'Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.'
             },
             {
@@ -56,7 +56,7 @@ export class MovieService {
                 duration: 136,
                 year: 1999,
                 genre: 'Sci-Fi',
-                rating: 8.7,
+                rating: 5,
                 description: 'A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.'
             },
             {
@@ -66,30 +66,39 @@ export class MovieService {
                 duration: 154,
                 year: 1994,
                 genre: 'Crime',
-                rating: 8.9,
+                rating: 5,
                 description: 'The lives of two mob hitmen, a boxer, a gangster\'s wife, and a pair of diner bandits intertwine in four tales of violence and redemption.'
             },
             {
                 id: 7,
-                title: 'The Dark Knight',
-                director: 'Christopher Nolan',
-                duration: 152,
-                year: 2008,
-                genre: 'Action',
-                rating: 9.0,
-                description: 'When the menace known as the Joker emerges from his mysterious past, he wreaks havoc and chaos on the people of Gotham.'
-            },
-            {
-                id: 8,
                 title: 'Forrest Gump',
                 director: 'Robert Zemeckis',
                 duration: 142,
                 year: 1994,
                 genre: 'Drama',
-                rating: 6.8,
+                rating: 4,
                 description: 'The presidencies of Kennedy and Johnson, the Vietnam War, and other historical events unfold from the perspective of an Alabama man with a low IQ.'
+            },
+            {
+                id: 8,
+                title: 'The Godfather',
+                director: 'Francis Ford Coppola',
+                duration: 175,
+                year: 1972,
+                genre: 'Crime',
+                rating: 5,
+                description: 'An organized crime dynasty\'s aging patriarch transfers control of his clandestine empire to his reluctant son.'
+            },
+            {
+                id: 9,
+                title: 'Fight Club',
+                director: 'David Fincher',
+                duration: 139,
+                year: 1999,
+                genre: 'Drama',
+                rating: 2,
+                description: 'An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into something much, much more.'
             }
-
         ];
     }
 

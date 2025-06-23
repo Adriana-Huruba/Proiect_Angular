@@ -27,42 +27,8 @@ export class AuthService {
     setToken(token: string): void {
         localStorage.setItem('userToken', token);
     }
+    
     getToken(): string | null {
         return localStorage.getItem('userToken');
     }
-    // private userToken: string = "";
-
-    // constructor(private http: HttpClient, private router:Router)
-    // {
-    //     if(sessionStorage.getItem("userToken")){
-    //         this.setToken(sessionStorage.getItem("userToken") || "")
-    //     }
-    // }
-
-    // getToken(): string {
-    //     return this.userToken;
-    // }
-
-    // setToken(token: string) {
-    //     this.userToken = token;
-    //     //sessionStorage.setItem("userToken", token);
-    // }
-
-    // succesfulLogin(payload: LoginPayload): Observable<any>
-    // {
-    //     return this.http.post("https://reqres.in/api/login", payload, {headers: {"x-api-key": "reqres-free-v1"}})
-    //     .pipe(
-    //         map((response: any) => {
-    //         console.log(response);
-    //         return response;
-    //     }));
-    // }
-
-    // logout(){
-    //     this.userToken ="";
-    //     sessionStorage.clear();
-    //     localStorage.clear();
-    //     this.router.navigate(["/login"]);
-    // }
-  
 }

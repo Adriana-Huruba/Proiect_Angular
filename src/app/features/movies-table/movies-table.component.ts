@@ -39,10 +39,6 @@ import { MovieSearchComponent } from "../movie-search/movie-search.component";
 
 export class MoviesTableComponent implements OnInit {
 
-  openWindow() {
-    throw new Error('Method not implemented.')
-  }
-
   private movieService = inject(MovieService);
   movies = signal<Movie[]>([]);
   originalMovies = signal<Movie[]>([]);
@@ -127,7 +123,6 @@ export class MoviesTableComponent implements OnInit {
   }
 
   updateDisplayData() {
-
     const movies = this.movies();
     this.displayData = movies.slice((this.pageIndex - 1) * this.pageSize, this.pageIndex * this.pageSize);
     this.total = movies.length;
@@ -154,7 +149,6 @@ export class MoviesTableComponent implements OnInit {
     const confirmDelete = confirm(`Are you sure you want to delete the movie"${movie.title}"?`);
     if (confirmDelete) {
       this.displayData = this.displayData.filter(m => m !== movie);
-
     }
   }
 

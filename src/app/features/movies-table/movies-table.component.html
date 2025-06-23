@@ -1,7 +1,6 @@
 <app-movie-search [searchTerm]="searchMovie" (search)="onSearchChange($event)"></app-movie-search>
 <button nz-button nzType="primary" (click)="addMovie()" class="btn-add">Add Movie</button>
 
-
 <nz-table #basicTable [nzData]="displayData" [nzPageSize]="pageSize" [nzPageIndex]="pageIndex" [nzTotal]="total"
   nzPagination="true" (nzPageIndexChange)="onPageChange($event)" [nzBordered]="true" [nzFrontPagination]="false">
   <thead>

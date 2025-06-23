@@ -61,8 +61,7 @@ export class RegisterPageComponent {
         {
           this.userService.addUser(newUser).subscribe({
             next: (user) => {
-              //console.log('User registered successfully:', user);
-              //console.log('Assigned ID:', user.id); 
+              console.log('User registered successfully:', user);
               alert('Registration successful! Please log in.');
               this.router.navigate(['/login']); 
             },
@@ -73,19 +72,6 @@ export class RegisterPageComponent {
           });
         }
       })
-
-      // this.userService.getUser(email, password)
-      //   .pipe(first())
-      //   .subscribe(user => {
-      //     if (user) {
-      //       console.log('User already exists:', user);
-      //     } else {
-      //       this.userService.addUser(user)
-      //         .subscribe(newUser => {
-      //           console.log('User registered successfully:', newUser);
-      //         });
-      //     }
-      //   });
     }
   }
 

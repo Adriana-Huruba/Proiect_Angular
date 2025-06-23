@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-
 @Component({
   selector: 'app-movie-search',
   standalone: true,
@@ -9,6 +8,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './movie-search.component.html',
   styleUrl: './movie-search.component.scss'
 })
+
 export class MovieSearchComponent {
 
   @Input() searchTerm: string = '';
